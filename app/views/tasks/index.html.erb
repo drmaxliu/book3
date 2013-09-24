@@ -1,25 +1,53 @@
-<h1>Listing tasks</h1>
+<div id="sandbox">
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Complete</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <h1>Task List</h1>
 
-<% @tasks.each do |task| %>
-  <tr>
-    <td><%= task.name %></td>
-    <td><%= task.complete %></td>
-    <td><%= link_to 'Show', task %></td>
-    <td><%= link_to 'Edit', edit_task_path(task) %></td>
-    <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+  <%= link_to "New Task", new_task_path, id: "new_link", remote: true %>
 
-<br />
+  <h2>Incomplete Tasks</h2>
+  <div class="tasks" id="incomplete_tasks">
+    <%= render @incomplete_tasks %>
+  </div>
 
-<%= link_to 'New Task', new_task_path %>
+  <h2>Comlpete Tasks</h2>
+  <div class="tasks" id="complete_tasks">
+    <%= render @complete_tasks %>
+  </div>
+
+  <p id="genesis">
+    In the beginnining, the earth was empty and void.</br>
+    
+  </p>
+
+</div>
+
+<div class="info-box">
+  <ul>
+    <li>Select any text in the grey box below to highlight it.</li>
+    <li>
+      Change highlight color:
+      <div id="color-picker">
+        <div class="color" style="background-color: #FFFF66"></div>
+        <div class="color" style="background-color: #66FF66"></div>
+        <div class="color" style="background-color: #6666FF"></div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div>
+  <button id="serialize-btn">Serialize highlights</button>
+  <button id="deserialize-btn">Deserialize highlights</button>
+  <% if Mark.count >0 %>
+    <textarea rows="6" cols="90" style="width: 100%"><%= Mark.first.highlight.to_s %></textarea>
+  <% else %>
+    <textarea rows="6" cols="90" style="width: 100%"></textarea>
+  <% end %>
+</div>
+
+<%= render 'highlight_form' %>
+
+<div id="test_hide">
+<p>Hello! Let me know if you can see me!</p>
+</div>
+

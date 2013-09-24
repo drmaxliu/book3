@@ -60,8 +60,8 @@ class MarksController < ApplicationController
 
     respond_to do |format|
       if @mark.update_attributes(params[:mark])
-        format.html { redirect_to @mark, notice: 'Mark was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to tasks_url, notice: 'Mark was successfully updated.' }
+        format.js
       else
         format.html { render action: "edit" }
         format.json { render json: @mark.errors, status: :unprocessable_entity }
