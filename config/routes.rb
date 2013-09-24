@@ -1,5 +1,15 @@
 Book3::Application.routes.draw do
+  resources :marks
+
+
+  resources :tasks
+
+
   devise_for :users
+
+  resources :marks
+  resources :tasks
+  root to: 'tasks#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
